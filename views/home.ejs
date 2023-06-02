@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+#teams {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#teams td, #teams th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#teams tr:nth-child(even){background-color: #f2f2f2;}
+
+#teams tr:hover {background-color: #ddd;}
+
+#teams th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+#AddButton {
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  text-align: center;
+  padding: 12px 20px;
+  transition-duration: 0.4s;
+}
+
+#AddButton:hover {
+  background-color: #4CAF50; 
+  color: white;
+}
+
+#mod {
+  padding: 30px;
+  text-align: center;
+  background: #1ab1bc;
+  color: white;
+  font-size: 50px;
+}
+</style>
+
+</head>
+<body> 
+  <div class="container">
+
+    <h1  class="text-center" id="mod"><%= title %></h1>
+
+<table id="teams">
+  <tr>
+    <!-- <th>No.</th> -->
+    <th>Full Name</th>
+    <th>Group Name</th>
+    <th>Sap ID</th>
+    <th></th>
+    <th></th>
+  </tr>
+  
+  <tbody>
+    <%
+    if(teamData.length >0) 
+    {    
+    teamData.forEach(function(data){
+        %>
+        <tr>
+         <!-- <td><%= data.id %></td> -->
+         <td><%= data.fullname %></td>
+         <td><%= data.groupname %></td>
+         <td><%= data.sapid %></td>
+         <td ><a href="/home/edit/<%= data.id %>" button="btn-btn-info"> Edit </a></td>
+        <td><a href="/home/delete/<%= data.id %>" button="btn-btn-danger"> Delete </a></td>
+        
+    </tr>
+        
+        <%
+        
+    });
+   
+
+    }else {
+      %>
+        <tr>
+           <td colspan="6"> No Data Found</td> 
+        </tr>
+      <%
+    }
+    
+    %>
+
+</tbody>
+</table>
+<center style="padding-top: 20px;"><a href="/home/add" id="AddButton" style="text-decoration: none;"> Add New Member </a></center>
+
+</div>
+</body>
+</html>
+
